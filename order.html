@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="orderApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/angular.js" ></script>
+	</head>
+	<body id="container">
+		<div>
+			<main ng-controller="orderContro"></main>
+		</div>
+	</body>
+	<script>
+		var food=angular.module("orderApp",[]);
+			food.controller("orderContro",function($scope,$http){
+				$http.get('json/takeout_order.json').success(function(data){
+				   //alert(data.length)
+				   var order=data;
+				for(var t=0;t<order.length;t++){
+					var table=document.createElement("table");
+					document.getElementsByTagName("main")[0].appendChild(table);
+					table.className="order_table";
+					var tr1=document.createElement("tr");
+					table.appendChild(tr1);
+					var tr2=document.createElement("tr");
+					table.appendChild(tr2);
+					var tr3=document.createElement("tr");
+					table.appendChild(tr3);
+					var tr4=document.createElement("tr");
+					table.appendChild(tr4);
+					var tr5=document.createElement("tr");
+					table.appendChild(tr5);
+					var td1=document.createElement("td");
+					tr1.appendChild(td1);
+					td1.innerHTML="订餐时间:";
+					var td2=document.createElement("td");
+					tr1.appendChild(td2);
+					td2.innerHTML=order[t]["fCreateTime"];					
+					var td3=document.createElement("td");
+					tr2.appendChild(td3);
+					td3.innerHTML="订餐内容:";
+					var td4=document.createElement("td");
+					tr2.appendChild(td4);
+					td4.innerHTML=order[t]["fContent"];					
+					var td5=document.createElement("td");
+					tr3.appendChild(td5);
+					td5.innerHTML="配送信息:";
+					var td6=document.createElement("td");
+					tr3.appendChild(td6);
+					td6.innerHTML=order[t]["fUserName"]+"，"+order[t]["fPhoneNumber"]+"，"+order[t]["fAddress"];					
+					var td7=document.createElement("td");
+					tr4.appendChild(td7);
+					td7.innerHTML="合计金额:";
+					var td8=document.createElement("td");
+					tr4.appendChild(td8);
+					td8.innerHTML="&yen;"+order[t]["fSum"];	
+					var td9=document.createElement("td");
+					tr5.appendChild(td9);
+					td9.innerHTML="支付状态:";
+					var td10=document.createElement("td");
+					tr5.appendChild(td10);
+					td10.innerHTML="货到付款";
+				}
+			})
+		})
+	</script>
+</html>

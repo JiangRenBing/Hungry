@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+    
+	<body id="container">
+		<header>
+			<section>
+				<h3>饿了吧</h1>
+			</section>
+		</header>
+		<main>
+			<iframe name="content" style="width: 100%;" src="menu1.html" frameborder="0" scrolling="no" id="test" onload="this.height=100"></iframe>
+		</main>
+		<footer>	
+			<a class="link_text" id="menu" target="content" href="menu1.html"><span class="ling0"></span>菜单</a>
+			<a class="link_text" id="shoppingCar" target="content" href="shoppingCar.html"><span class="ling5"></span>购物车<u id="orderCount"></u></a>
+			<a class="link_text" id="order" target="content" href="order.html"><span class="ling6"></span>订单</a>
+			<a class="link_text" id="my" target="content" href="my.html"><span class="ling7"></span>我的</a>
+		</footer>
+	</body>
+		<script type="text/javascript">
+		    var ls=window.localStorage;
+			if(ls.getItem("json")){
+				var valueStr=ls.getItem("json");
+				var orderCount=JSON.parse(valueStr);
+		        document.getElementById("orderCount").innerHTML="("+orderCount.length+")";
+			}
+		    document.getElementById("menu").onclick=function(){
+				document.getElementsByTagName("span")[0].className="ling0";
+				document.getElementsByClassName("link_text")[0].style.color="#35B3E4";
+				for (var t=0;t<4;t++) {
+					if(t!=0){
+						document.getElementsByTagName("span")[t].className="ling"+(t+4);
+						document.getElementsByClassName("link_text")[t].style.color="#666";
+					}
+				}
+			}
+		    document.getElementById("shoppingCar").onclick=function(){
+				document.getElementsByTagName("span")[1].className="ling1";
+				document.getElementsByClassName("link_text")[1].style.color="#35B3E4";
+				for (var t=0;t<4;t++) {
+					if(t!=1){
+						document.getElementsByTagName("span")[t].className="ling"+(t+4);
+						document.getElementsByClassName("link_text")[t].style.color="#666";
+					}
+				}
+			}
+		    document.getElementById("order").onclick=function(){
+				document.getElementsByTagName("span")[2].className="ling2";
+				document.getElementsByClassName("link_text")[2].style.color="#35B3E4";
+				for (var t=0;t<4;t++) {
+					if(t!=2){
+						document.getElementsByTagName("span")[t].className="ling"+(t+4);
+						document.getElementsByClassName("link_text")[t].style.color="#666";
+					}
+				}
+			}
+		    document.getElementById("my").onclick=function(){
+				document.getElementsByTagName("span")[3].className="ling3";
+				document.getElementsByClassName("link_text")[3].style.color="#35B3E4";
+				for (var t=0;t<4;t++) {
+					if(t!=3){
+						document.getElementsByTagName("span")[t].className="ling"+(t+4);
+						document.getElementsByClassName("link_text")[t].style.color="#666";
+					}
+				}
+			}
+			function reinitIframe() {
+				var iframe = document.getElementById("test");
+				try {
+					var bHeight = iframe.contentWindow.document.body.scrollHeight;
+					var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+					var height = Math.max(bHeight, dHeight);
+					iframe.height = height;
+				} catch(ex) {}
+			}
+			window.setInterval("reinitIframe()", 200);	
+		</script>
+
+</html>

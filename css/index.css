@@ -1,0 +1,294 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font: normal 1em "微软雅黑";
+}
+#container{
+	max-width: 460px;
+	min-width: 300px;
+	margin: 0 auto;
+	background: #666;
+}
+header{
+	width: 100%;
+	height: 3em;
+	color: white;
+	position: relative;
+}
+header section{
+	width: 100%;
+	line-height: 3em;
+	min-width: 300px;
+	max-width: 460px;
+	position: fixed;
+	background-color: #35B3E4;
+	text-align: center;
+}
+main{
+	width: 100%;
+	max-width: 460px;
+	min-width: 300px;
+	margin: 0 auto;
+	height: 40em;
+	background-color: #ccc;
+}
+dl{
+	display: flex;
+	border-bottom: 1px solid #ccc;
+	background-color: white;
+	padding: 1em 2em 0 1em;
+	font-size: 0.8em;
+	height: 8em;
+}
+dt{
+	flex: 1;
+	vertical-align: middle;
+}
+dt img{
+	display: block;
+	border-radius: 8px;
+}
+dd{
+	flex: 2;
+	vertical-align: middle;
+}
+dd p{
+	margin: 0.5em 1em;
+}
+dd a{
+	float: right;
+	text-decoration: none;
+	font-weight: normal;
+	color: #35B3E4;
+	cursor: pointer;
+}
+dd p:nth-child(1){
+	font-weight: bold;
+}
+dd p:nth-child(3){
+	font-weight: bold;
+}
+footer{
+	width: 100%;
+	/*height: 2em;*/
+	/*border: 1px solid red;*/
+	position: fixed;
+	bottom: 0;
+	max-width: 460px;
+	min-width: 300px;
+	display: flex;
+	background-color: #F8F6F7;
+	border-top: 1px solid #ccc;
+	padding-top: 0.5em;
+}
+.link_text{
+	flex: 1;
+	text-decoration: none;
+	text-align: center;
+	color: #666;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+.link_text:nth-child(1){
+	color: #35B3E4;
+}
+.ling0{
+	display: block;
+	background: url(../img/01menu.png) no-repeat -32px -527px;
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+.ling1{
+	display: block;
+	background: url(../img/02-shoppingCar.png) no-repeat -111px -570px;
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+.ling2{
+	display: block;
+	background: url(../img/03-order.png) no-repeat -193px -527px;
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+.ling3{
+	display: block;
+	background: url(../img/04my.png) no-repeat -270px -527px;
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+.ling4{
+	display: block;
+	background: url(../img/03-order.png) no-repeat -32px -527px;
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+.ling5{
+	display: block;
+	background: url(../img/01-02menu.png) no-repeat -111px -527px;
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+.ling6{
+	display: block;
+	background: url(../img/01-02menu.png) no-repeat -193px -527px;
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+.ling7{
+	display: block;
+	background: url(../img/01-02menu.png) no-repeat -270px -527px;
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+/*my start*/
+.my_top{
+	box-sizing: border-box;
+	background-color: white;
+	width: 100%;
+	color: #33B5E5;
+	line-height: 3em;
+	font-weight: bold;
+	font-size: 0.9em;
+	border-bottom: 1px solid #CCCCCC;
+	padding-left: 1em;
+}
+.my_middle{
+	background-color: white;
+	width: 100%;
+}
+.my_table{
+	width: 100%;
+	border-bottom: 1px solid #CCCCCC;
+}
+.text{
+	width: 20%;
+	text-align: center;
+	/*font-weight: bold;
+	font-size: 0.6em;*/
+	font:bold 0.8em "微软雅黑";
+	line-height: 4em;
+}
+.ipt{
+	font:normal 0.8em "微软雅黑";
+	line-height: 2.5em;
+	border: 1px solid #ccc;
+	border-radius: 0.3em;
+	padding:0 1em;
+	color: #666;
+	width: 12em;
+}
+.tijiao{
+	line-height:3.2em ;
+	text-align: right;
+}
+.sub{
+	color: white;
+	padding: 0.6em 1em;
+	border: none;
+	background-color: #73A839;
+	border-radius: 0.3em;
+	margin-right: 1.5em;
+}
+/*order start*/
+.order_table{
+	background-color: white;
+	padding: 0 1em;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+}
+.order_table tr td:nth-child(1){
+	font: normal 0.9em "微软雅黑";
+	width: 20%;
+	color: #666;
+	vertical-align: text-top;
+}
+.order_table tr:nth-child(1) td:nth-child(1){
+	font: bold 0.9em "微软雅黑";	
+	line-height: 2em;
+}
+.order_table tr:nth-child(2) td:nth-child(1){
+	font: normal 0.9em "微软雅黑";
+	color: #FF915A;
+	line-height: 2em;
+}
+.order_table tr:nth-child(3) td:nth-child(1){
+	font: normal 0.9em "微软雅黑";
+	color: #FF915A;
+	line-height: 2em;
+}
+.order_table tr td:nth-child(2){
+	font: normal 0.9em "微软雅黑";
+	color: #666;
+	width: 60%;
+}
+.order_table tr:nth-child(4) td:nth-child(2){
+	font: bold 0.9em "微软雅黑";
+	color: red;
+	line-height: 2em;
+}
+/*shoppingCar_table start*/
+.shoppingCar_table{
+	background-color: white;
+	width: 100%;
+	padding: 2em 1em;
+}
+.shoppingCar_table tr td:nth-child(1){
+	width: 40%;
+	line-height: 2em;
+}
+.shoppingCar_table tr td:nth-child(2){
+	width: 30%;
+	text-align: center;
+}
+td input{
+	border: none;
+	width: 20%;
+	text-align: center;
+}
+td button{
+	color: white;
+	font-size: 1.5em;
+	padding: 0em 0.5em;
+	background-color: #33B5E5;
+	border: none;
+}
+.qingdan{
+	color: #33B5E5;
+	font-weight: bold;
+	font-size: 1em;
+	background-color: white;
+	line-height: 2em;
+	margin-bottom: 0.1em;
+	padding: 0 1em;
+}
+.zongji{
+	text-align: right;
+	background-color: white;
+	line-height: 2em;
+	margin-top: 0.1em;
+	padding: 0 1em;
+}
+.qingkong{
+	text-decoration: none;
+	color: #33B5E5;
+	font-size: 0.8em;
+	padding-right: 2em;
+}
+.xiadan{
+	color: white;
+	padding: 0.6em 3em;
+	border: none;
+	background-color: orangered;
+	border-radius: 0.3em;
+	margin-right: 1.5em;
+}

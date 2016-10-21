@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="userApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/angular.js" ></script>
+	</head>
+	<body id="container">
+		<main>
+			<div class="my_top">默认联系方式</div>
+			<form class="my_middle" ng-controller="userContro">
+				<table class="my_table">
+					<tr>
+						<td class="text">姓名</td>
+						<td>
+							<input class="ipt" type="text" name="userName"  />
+						</td>
+					</tr>
+					<tr>
+						<td class="text">电话</td>
+						<td>
+							<input class="ipt" type="text" name="userPhone" />
+						</td>
+					</tr>
+					<tr>
+						<td class="text">地址</td>
+						<td>
+							<input style="width:7.5em;" class="ipt" type="text" name="userAddress" />
+						</td>
+					</tr>
+					<!--<tr>
+						<td class="text"></td>
+						<td style="text-align: right;">
+							<input class="sub" type="submit" value="保存用户信息" />
+							<span></span>
+						</td>
+					</tr>-->
+				</table>
+				<div class="tijiao">
+					<input class="sub" type="submit" value="保存用户信息" />
+				</div>
+			</form>
+		</main>
+	</body>
+	<script>
+		var food=angular.module("userApp",[]);
+			food.controller("userContro",function($scope,$http){
+				$http.get('json/takeout_user.json').success(function(data){
+				   //alert(data.length)
+				   var use=data;
+				for(var t=0;t<2;t++){
+					document.getElementsByName("userName")[0].value=use[t]['fName'];
+				    document.getElementsByName("userPhone")[0].value=use[t]['fPhoneNumber'];
+				    document.getElementsByName("userAddress")[0].value=use[t]['fAddress'];
+				}	
+			})
+		})
+	</script>
+</html>

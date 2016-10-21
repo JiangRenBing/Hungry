@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="foodApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/angular.js" ></script>
+	</head>
+	<body id="container">
+		<main ng-controller="foodContro">		
+		</main>
+	</body>
+	<script>
+		var food=angular.module("foodApp",[]);
+			food.controller("foodContro",function($scope,$http){
+				$http.get('json/takeout_food.json').success(function(data){
+				   // alert(data.length)
+				   var food=data;
+				for(var t=0;t<data.length;t++){
+					dl=document.createElement("dl");
+					document.getElementsByTagName("main")[0].appendChild(dl);
+					dt=document.createElement("dt");
+					document.getElementsByTagName("dl")[t].appendChild(dt);
+					dd=document.createElement("dd");
+					document.getElementsByTagName("dl")[t].appendChild(dd);
+					Img=document.createElement("img");
+					document.getElementsByTagName("dt")[t].appendChild(Img);
+					Img.src="img/"+food[t]['fImage'];
+					p1=document.createElement("p");
+					document.getElementsByTagName("dd")[t].appendChild(p1);
+					p1.innerHTML=food[t]['fName']+"<a>来一份</a>";
+					document.getElementsByTagName("a")[t].className="btn"+t;
+					p2=document.createElement("p");
+					document.getElementsByTagName("dd")[t].appendChild(p2);
+					p2.innerHTML=food[t]['fDescription'];
+					p3=document.createElement("p");
+					document.getElementsByTagName("dd")[t].appendChild(p3);
+					p3.innerHTML=food[t]['fPrice'];
+					p4=document.createElement("p");
+					document.getElementsByTagName("dd")[t].appendChild(p4);
+					p4.style.height="4em";
+				};
+				var ls=window.localStorage;
+				if(ls.getItem("json")){
+					var valueStr=ls.getItem("json");
+					var js=JSON.parse(valueStr);
+				}else{
+					var js=[];
+				};
+				for(var i=0;i<food.length;i++){
+					document.getElementsByTagName("a")[i].onclick=function(){
+						var h=this.className.substr(3,1);
+						l=food[h]['fID'];
+						m=food[h]['fName'];
+						n=food[h]['fPrice'];
+						var addfood={
+							"name":m,
+							"price":n,
+							"count":1
+						};
+						if(confirm("谢谢惠顾！")){
+							js.push(addfood);
+						}
+						//js.push(addfood);
+						var jsStr=JSON.stringify(js);
+						ls.setItem("json",jsStr);
+					}
+				}
+				})
+			})
+	</script>
+</html>

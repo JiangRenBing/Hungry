@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+
+	<body id="container">
+		<main style="padding-top: 0.6em;">
+			<p class="qingdan">清单</p>
+			<table class="shoppingCar_table">
+			</table>
+			<p class="zongji">
+				合计:&yen;0.00元
+			</p>
+			<div style="margin-top: 1em;" class="my_top">默认联系方式</div>
+			<form class="my_middle">
+				<table class="my_table">
+					<tr>
+						<td class="text">姓名</td>
+						<td>
+							<input class="ipt" type="text" name="userName" value="马先生" />
+						</td>
+					</tr>
+					<tr>
+						<td class="text">电话</td>
+						<td>
+							<input class="ipt" type="text" name="userPhone" value="400-017-8677" />
+						</td>
+					</tr>
+					<tr>
+						<td class="text">地址</td>
+						<td>
+							<input style="width:7.5em;" class="ipt" type="text" name="userAddress" value="北京朝阳区东三环南路98号高和蓝峰大厦18层1802室" />
+						</td>
+					</tr>
+				</table>
+				<div class="tijiao" style="margin-bottom: 2em;">
+					<a class="qingkong" href="#">清空购物车</a>
+					<input class="xiadan" type="submit" value="下单" />
+				</div>
+		</main>
+	</body>
+	<script>
+		var ls = window.localStorage;
+		var valueStr = ls.getItem("json");
+		var jsonObject = JSON.parse(valueStr);
+		var allPrice = 0;
+		for(var t = 0; t < jsonObject.length; t++) {
+			//alert(jsonObject.length);
+			var table = document.getElementsByClassName("shoppingCar_table")[0];
+			var tr = document.createElement("tr");
+			table.appendChild(tr);
+			var td1 = document.createElement("td");
+			td1.innerHTML = jsonObject[t]['name'];
+			document.getElementsByTagName("tr")[t].appendChild(td1);
+			var td2 = document.createElement("td");
+			td2.innerHTML = jsonObject[t]['price'];
+			td2.className="price";
+			document.getElementsByTagName("tr")[t].appendChild(td2);
+			var td3 = document.createElement("td");
+			
+			var count=jsonObject[t]['count'];
+			document.getElementsByTagName("tr")[t].appendChild(td3);
+			var btn1=document.createElement("button");
+			btn1.innerHTML="-";
+			btn1.className="delbtn"+t;
+			btn1.onclick=function(){
+				var h=this.className.substr(6,1);
+				if(parseInt(document.getElementsByClassName("count")[h].value)>0){
+					document.getElementsByClassName("count")[h].value=parseInt(document.getElementsByClassName("count")[h].value)-1;
+				}else{
+					table.removeChild(document.getElementsByTagName("tr")[h]);
+				}
+				document.getElementsByClassName("price")[h].innerHTML=document.getElementsByClassName("count")[h].value*jsonObject[h]['price']+".00";
+				sum();
+			}
+			td3.appendChild(btn1);
+			
+			var btn3=document.createElement("input");
+			btn3.type="text";
+			btn3.className="count";
+			btn3.readOnly="true";
+			btn3.value=count;
+			td3.appendChild(btn3);
+			var btn2=document.createElement("button");
+			btn2.innerHTML="+";
+			btn2.className="addbtn"+t;
+			btn2.onclick=function(){
+				var h=this.className.substr(6,1);
+				document.getElementsByClassName("count")[h].value=parseInt(document.getElementsByClassName("count")[h].value)+1;
+				document.getElementsByClassName("price")[h].innerHTML=document.getElementsByClassName("count")[h].value*jsonObject[h]['price']+".00";
+				sum();
+			}
+			td3.appendChild(btn2);
+			price = parseInt(td2.innerHTML);
+			allPrice = price + allPrice;
+		}
+		function sum(){
+			var allPrice = 0;
+			for (var c = 0; c < jsonObject.length; c++ ) {
+				var price=parseInt(document.getElementsByClassName("price")[c].innerHTML);
+				var allPrice = price + allPrice;
+			}
+			document.getElementsByClassName("zongji")[0].innerHTML = "合计:&yen;" + allPrice + ".00元";
+		}
+		document.getElementsByClassName("zongji")[0].innerHTML = "合计:&yen;" + allPrice + ".00元";
+		document.getElementsByClassName("qingkong")[0].onclick=function(){
+			ls.clear();
+			table.innerHTML="<b>请前往菜单选购！</b>";
+			document.getElementsByClassName("zongji")[0].innerHTML = "合计:&yen;0.00元";
+		}
+
+
+		/*var xhr=new XMLHttpRequest();
+		xhr.open("GET","shoppingCar.php?r="+Math.random());
+		xhr.send();
+		xhr.onreadystatechange=function(){	
+			if(xhr.readyState==4&&xhr.status==200){
+				var shoppingCar=JSON.parse(xhr.responseText);
+				var allPrice=0;
+				for(var t=0;t<shoppingCar.length;t++){
+					var table=document.getElementsByClassName("shoppingCar_table")[0];
+					var tr=document.createElement("tr");
+					table.appendChild(tr);
+					var td1=document.createElement("td");
+					td1.innerHTML=shoppingCar[t]['name'];
+					document.getElementsByTagName("tr")[t].appendChild(td1);
+					
+					var td2=document.createElement("td");
+					td2.innerHTML=shoppingCar[t]['price']*shoppingCar[t]['count'];
+					document.getElementsByTagName("tr")[t].appendChild(td2);
+					
+					var td3=document.createElement("td");
+					var count=shoppingCar[t]['count'];
+					var btn1=document.createElement("button");
+					btn1.innerHTML="-";
+					td3.innerHTML="<button>-</button>"+"<input class='count' type='text' />"+"<button>+</button>";
+					document.getElementsByTagName("tr")[t].appendChild(td3);
+					var p=t+shoppingCar.length;
+					if(t%2==0){
+						document.getElementsByTagName("button")[t].className="delbtn"+t/2;
+					}else{
+						document.getElementsByTagName("button")[t].className="addbtn"+(t-1)/2;
+					}*/
+		//alert(p);
+		/*if(p%2!=0){
+			document.getElementsByTagName("button")[p].className="delbtn"+p/2;
+		}else{
+			document.getElementsByTagName("button")[p].className="addbtn"+(p-1)/2;
+		}*/
+		/*document.getElementsByTagName("button")[t].onclick=function(){
+						alert(this.tagName);
+					}
+					document.getElementsByTagName("input")[t].value=count;
+					price=parseInt(td2.innerHTML);
+				    var allPrice=price+allPrice;
+				}
+				document.getElementsByClassName("zongji")[0].innerHTML="合计:&yen;"+allPrice+"元";*/
+		/*for(var i=0;i<shoppingCar.length*2;i++){
+			if(i%2==0){
+				document.getElementsByTagName("button")[i].className="delbtn"+i/2;
+				//alert(document.getElementsByTagName("button")[i].className);
+			}else{
+				document.getElementsByTagName("button")[i].className="addbtn"+(i-1)/2;
+				//alert(document.getElementsByTagName("button")[i].innerText);
+				//alert(document.getElementsByTagName("button")[i].className);
+			}
+		}
+		for(var n=0;n<shoppingCar.length;n++){
+			document.getElementsByClassName("delbtn"+n)[0].onclick=function(){
+				var clm=this.className;
+				var l=clm.substr(6,1);
+				//alert(l);
+			    document.getElementsByTagName("input")[l].value--;
+			    //alert(this.className);
+		    }
+			document.getElementsByClassName("addbtn"+n)[0].onclick=function(){
+				var clm=this.className;
+				var l=clm.substr(6,1);
+				//alert(l);
+			    document.getElementsByTagName("input")[l].value++;
+			    //alert(this.className);
+		    }
+			
+		}*/
+		/*	}
+		}
+*/
+	</script>
+
+</html>
